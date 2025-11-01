@@ -1,0 +1,14 @@
+export enum ProviderEnum {
+  System = 'System',
+  Google = 'Google',
+}
+export enum GenderEnum {
+  male = 'male',
+  female = 'female',
+}
+
+export enum RoleEnum {
+  user = 'user',
+  admin = 'admin',
+  superAdmin = 'superAdmin',
+}
