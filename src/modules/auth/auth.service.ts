@@ -28,15 +28,15 @@ export class AuthService {
     return { message: 'Done, User Created.', user };
   }
 
-  async signIn(data: signInDTO): Promise<{ message: string; user: HUserDocument }> {
+  async signIn(data: signInDTO): Promise<{ message: string; }> {
     const { email, password } = data;
     const user = await this.userRepository.findOne({ filter: { email } });
     if (!user) {
-      throw new BadRequestException('Invalid credentials.');
+      throw new ConflictException('Invalid credentials.');
     }
     if (!await compareHash({ plaintext: password, hash: user.password })) {
-      throw new BadRequestException('Invalid credentials.');
+      throw new ConflictException('Invalid credentials.');
     }
-    return { message: 'Done, User Logged in.', user };
+    return { message: 'Done, User Logged in.' };
   }
 }
