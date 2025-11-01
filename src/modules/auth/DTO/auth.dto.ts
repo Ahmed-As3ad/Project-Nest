@@ -39,7 +39,16 @@ export class IsMatchFields implements ValidatorConstraintInterface {
   }
 }
 
-export class SignUpDTO {
+export class signInDTO {
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+  @IsStrongPassword()
+  @IsNotEmpty()
+  password: string;
+}
+
+export class SignUpDTO extends signInDTO {
   @Length(2, 20)
   @IsNotEmpty()
   @IsString()
@@ -48,13 +57,6 @@ export class SignUpDTO {
   @IsNotEmpty()
   @IsString()
   lName: string;
-
-  @IsEmail()
-  @IsNotEmpty()
-  email: string;
-  @IsStrongPassword()
-  @IsNotEmpty()
-  password: string;
 
   @ValidateIf((data: SignUpDTO) => {
     return Boolean(data.password);
